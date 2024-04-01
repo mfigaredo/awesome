@@ -34,9 +34,12 @@ SECRET_KEY = env('SECRET_KEY')
 ENCRYPT_KEY = env('ENCRYPT_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = ENVIRONMENT == 'development'
-
-ALLOWED_HOSTS = ['*']
+if ENVIRONMENT == 'development':
+    DEBUG = True
+    ALLOWED_HOSTS = ['*']
+else:
+    DEBUG = False
+    ALLOWED_HOSTS = [ env('RENDER_EXTERNAL_HOSTNAME') ]
 
 INTERNAL_IPS = (
     '127.0.0.1',
