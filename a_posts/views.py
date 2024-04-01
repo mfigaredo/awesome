@@ -8,6 +8,7 @@ from django.contrib import messages
 from bs4 import BeautifulSoup
 import requests
 from django.core.paginator import Paginator
+from a_features.views import feature_enabled
 
 # Create your views here.
 def home_view(request, tag=None):
@@ -24,10 +25,13 @@ def home_view(request, tag=None):
     except:
         return HttpResponse('')
 
+    feature_herobutton = feature_enabled(1, 'MikeF')
+
     context = {
         'posts': posts, 
         'tag': tag,
         'page': page,
+        'feature_herobutton': feature_herobutton,
     }
 
     if request.htmx:
