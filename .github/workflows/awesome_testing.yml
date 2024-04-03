@@ -13,7 +13,6 @@ jobs:
       ENVIRONMENT : development
       SECRET_KEY : secret_key
       ENCRYPT_KEY : Ak7LgWwd95YplRyaoqKQkHAPPN3Am_S04v-aNBIrfGA=
-      RENDER_EXTERNAL_HOSTNAME : awesome-staging-4ttm.onrender.com
 
     steps:
       - uses: actions/checkout@v4
