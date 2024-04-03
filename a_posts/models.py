@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 import uuid
 
 # Create your models here.
@@ -21,6 +22,10 @@ class Post(models.Model):
     class Meta:
         ordering = ['-created', ]
 
+    def get_absolute_url(self):
+        # return f'/category/{self.slug}'
+        return reverse("post", kwargs={"pk": self.id})
+
 class LikedPost(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -41,6 +46,11 @@ class Tag(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        # return f'/category/{self.slug}'
+        return reverse("category", kwargs={"tag": self.slug})
+    
     
 class Comment(models.Model):
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='comments')
