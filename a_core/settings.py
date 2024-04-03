@@ -39,9 +39,16 @@ if ENVIRONMENT == 'development':
     ALLOWED_HOSTS = ['*']
 else:
     DEBUG = False
-    ALLOWED_HOSTS = [ 'localhost', '127.0.0.1', env('RENDER_EXTERNAL_HOSTNAME') ]
+    ALLOWED_HOSTS = [ 'localhost', '127.0.0.1', 
+        env('RENDER_EXTERNAL_HOSTNAME'), 
+        'www.python-dev.xyz', 
+        'python-dev.xyz' 
+    ]
 
-CSRF_TRUSTED_ORIGINS = ['https://*.onrender.com']
+CSRF_TRUSTED_ORIGINS = ['https://*.onrender.com', 
+    'https://*.python-dev.xyz', 
+    'https://python-dev.xyz'
+]
 
 INTERNAL_IPS = (
     '127.0.0.1',
