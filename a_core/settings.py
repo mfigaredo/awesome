@@ -172,15 +172,15 @@ MEDIA_URL = 'media/'
 
 
 if ENVIRONMENT == 'production' or POSTGRES_LOCALLY == True:
+    CLOUDINARY_STORAGE = {
+        'CLOUD_NAME': env('CLOUD_NAME'),
+        'API_KEY': env('CLOUD_API_KEY'),
+        'API_SECRET': env('CLOUD_API_SECRET'),
+    }
     DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 else:
     MEDIA_ROOT = BASE_DIR / 'media'
 
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': env('CLOUD_NAME'),
-    'API_KEY': env('CLOUD_API_KEY'),
-    'API_SECRET': env('CLOUD_API_SECRET'),
-}
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
