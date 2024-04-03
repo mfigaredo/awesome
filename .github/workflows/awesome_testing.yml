@@ -1,0 +1,27 @@
+name: Awesome Testing
+
+on:
+  pull_request:
+    branches:
+    - staging
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    env:
+      ENVIRONMENT : development
+      SECRET_KEY : secret_key
+      ENCRYPT_KEY : Ak7LgWwd95YplRyaoqKQkHAPPN3Am_S04v-aNBIrfGA=
+      RENDER_EXTERNAL_HOSTNAME : awesome-staging-4ttm.onrender.com
+
+    steps:
+      - uses: actions/checkout@v4
+      
+      - uses: actions/setup-python@v5
+        with:
+          python-version: 3.12.2
+      
+      - run: python -m pip install --upgrade pip
+      - run: pip install -r requirements.txt
+      - run: python manage.py test
