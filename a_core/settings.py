@@ -71,6 +71,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'django_cleanup.apps.CleanupConfig',
+    'django.contrib.sitemaps',
     'django_htmx',
     'admin_honeypot',
     'a_posts',
