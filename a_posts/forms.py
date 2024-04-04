@@ -37,6 +37,7 @@ class PostEditForm(forms.ModelForm):
         }
 
 class CommentCreateForm(forms.ModelForm):
+    template_name = 'simple_form.html'
     class Meta:
         model = Comment
         fields = ['body', ]
@@ -48,6 +49,7 @@ class CommentCreateForm(forms.ModelForm):
         }
 
 class ReplyCreateForm(forms.ModelForm):
+    template_name = 'simple_form.html'
     class Meta:
         model = Reply
         fields = ['body', ]

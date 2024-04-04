@@ -16,9 +16,11 @@
             {% csrf_token %}
             {% element fields form=form unlabeled=True %}
             {% endelement %}
-            <input type="hidden"
-                    name="{{ redirect_field_name }}"
-                    value="{% url 'profile-onboarding' %}" />
+            {% if redirect_field_value %}
+                <input type="hidden"
+                       name="{{ redirect_field_name }}"
+                       value="{{ redirect_field_value }}" />
+            {% endif %}
         {% endslot %}
         {% slot actions %}
             {% element button tags="prominent,signup" type="submit" %}
