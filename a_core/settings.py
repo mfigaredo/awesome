@@ -67,6 +67,7 @@ INSTALLED_APPS = [
     'cloudinary_storage',
     'cloudinary',
     'django.contrib.sites',
+    'django.forms',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -214,3 +215,5 @@ else:
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_BLACKLIST = ['admin', 'accounts', 'profile', 'post', 'category','inbox', 'theboss', ]
+
+FORM_RENDERER = 'django.forms.renderers.TemplatesSetting'

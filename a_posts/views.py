@@ -107,7 +107,6 @@ def post_page_view(request, pk):
     post = get_object_or_404(Post, id=pk)
     commentForm = CommentCreateForm()
     replyForm = ReplyCreateForm()
-
     if request.htmx:
         if 'top' in request.GET:
             # comments = post.comments.filter(likes__isnull=False).distinct()
