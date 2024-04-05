@@ -11,13 +11,13 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-import dj_database_url
+import dj_database_url, os
 
+# os.environ.setdefault('S3_USE_SIGV4', 'True')
 from environ import Env
 env = Env()
 Env.read_env()
 ENVIRONMENT = env('ENVIRONMENT', default='production')
-
 # Feature toggle
 DEVELOPER = env('DEVELOPER', default='')
 STAGING = env('STAGING', default='False')
@@ -137,7 +137,7 @@ DATABASES = {
     }
 }
 
-POSTGRES_LOCALLY = False
+POSTGRES_LOCALLY = True
 if ENVIRONMENT == 'production' or POSTGRES_LOCALLY == True:
     DATABASES['default'] = dj_database_url.parse(env('DATABASE_URL'))
 
@@ -184,12 +184,30 @@ MEDIA_URL = 'media/'
 
 
 if ENVIRONMENT == 'production' or POSTGRES_LOCALLY == True:
-    CLOUDINARY_STORAGE = {
-        'CLOUD_NAME': env('CLOUD_NAME'),
-        'API_KEY': env('CLOUD_API_KEY'),
-        'API_SECRET': env('CLOUD_API_SECRET'),
+    # CLOUDINARY_STORAGE = {
+    #     'CLOUD_NAME': env('CLOUD_NAME'),
+    #     'API_KEY': env('CLOUD_API_KEY'),
+    #     'API_SECRET': env('CLOUD_API_SECRET'),
+    # }
+    # DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+    STORAGES = {
+        "default": {
+            "BACKEND": "storages.backends.s3.S3Storage",
+        },
+        "staticfiles": {
+            "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+        },
     }
-    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+    AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
+    AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME')
+    # AWS_S3_REGION_NAME = env('AWS_S3_REGION_NAME')
+    # AWS_S3_SIGNATURE_VERSION = 's3v4'
+    # AWS_S3_ADDRESSING_STYLE = "virtual"
+    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+    AWS_S3_FILE_OVERWRITE = False
+    AWS_LOCATION = 'media'
+    
 else:
     MEDIA_ROOT = BASE_DIR / 'media'
 
