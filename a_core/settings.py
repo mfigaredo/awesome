@@ -40,14 +40,16 @@ if ENVIRONMENT == 'development':
 else:
     DEBUG = False
     ALLOWED_HOSTS = [ 'localhost', '127.0.0.1', 
-        env('RENDER_EXTERNAL_HOSTNAME'), 
+        env('RENDER_EXTERNAL_HOSTNAME', default=''), 
         'www.python-dev.xyz', 
-        'python-dev.xyz' 
+        'python-dev.xyz',
+        'awesome-mafh97.4.us-1.fl0.io',
     ]
 
 CSRF_TRUSTED_ORIGINS = ['https://*.onrender.com', 
     'https://*.python-dev.xyz', 
-    'https://python-dev.xyz'
+    'https://python-dev.xyz',
+    'https://awesome-mafh97.4.us-1.fl0.io',
 ]
 
 INTERNAL_IPS = (
@@ -137,7 +139,7 @@ DATABASES = {
     }
 }
 
-POSTGRES_LOCALLY = True
+POSTGRES_LOCALLY = False
 if ENVIRONMENT == 'production' or POSTGRES_LOCALLY == True:
     DATABASES['default'] = dj_database_url.parse(env('DATABASE_URL'))
 
