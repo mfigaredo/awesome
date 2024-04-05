@@ -879,16 +879,16 @@ video {
   margin-top: 0.75rem;
 }
 
+.mt-56 {
+  margin-top: 14rem;
+}
+
 .mt-6 {
   margin-top: 1.5rem;
 }
 
 .mt-8 {
   margin-top: 2rem;
-}
-
-.mt-56 {
-  margin-top: 14rem;
 }
 
 .block {
@@ -1052,6 +1052,10 @@ video {
   max-width: 80rem;
 }
 
+.max-w-\[20rem\] {
+  max-width: 20rem;
+}
+
 .max-w-md {
   max-width: 28rem;
 }
@@ -1062,10 +1066,6 @@ video {
 
 .max-w-xl {
   max-width: 36rem;
-}
-
-.max-w-\[20rem\] {
-  max-width: 20rem;
 }
 
 .shrink-0 {
@@ -1294,11 +1294,6 @@ video {
   background-color: rgb(59 130 246 / var(--tw-bg-opacity));
 }
 
-.bg-gray-100 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(243 244 246 / var(--tw-bg-opacity));
-}
-
 .bg-gray-200 {
   --tw-bg-opacity: 1;
   background-color: rgb(229 231 235 / var(--tw-bg-opacity));
@@ -1337,11 +1332,6 @@ video {
 .bg-zinc-200 {
   --tw-bg-opacity: 1;
   background-color: rgb(228 228 231 / var(--tw-bg-opacity));
-}
-
-.bg-gray-100 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(243 244 246 / var(--tw-bg-opacity));
 }
 
 .bg-opacity-40 {
@@ -1405,6 +1395,16 @@ video {
   padding: 2rem;
 }
 
+.\!px-6 {
+  padding-left: 1.5rem !important;
+  padding-right: 1.5rem !important;
+}
+
+.\!py-\[1\.1rem\] {
+  padding-top: 1.1rem !important;
+  padding-bottom: 1.1rem !important;
+}
+
 .px-10 {
   padding-left: 2.5rem;
   padding-right: 2.5rem;
@@ -1453,16 +1453,6 @@ video {
 .py-4 {
   padding-top: 1rem;
   padding-bottom: 1rem;
-}
-
-.\!px-6 {
-  padding-left: 1.5rem !important;
-  padding-right: 1.5rem !important;
-}
-
-.\!py-\[1\.1rem\] {
-  padding-top: 1.1rem !important;
-  padding-bottom: 1.1rem !important;
 }
 
 .\!pb-0 {
@@ -1864,18 +1854,8 @@ p {
   margin-bottom: 1rem;
 }
 
-form p {
-  display: flex;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
 label, input {
   display: inline-block;
-}
-
-form p label {
-  width: 7rem;
 }
 
 label {
@@ -2039,10 +2019,38 @@ input[name="remember"] {
 
 /* Password Rules in signup form */
 
+/*
 form[action*='signup/'] ul {
-  font-size: 0.8rem;
-  color: #aaa;
-  text-align: right;
+    font-size: 0.8rem;
+    color: #aaa;
+    text-align: right;
+}
+*/
+
+.allauth .helptext {
+  margin-top: 1rem;
+  display: block;
+}
+
+.allauth .card a {
+  text-decoration-line: underline;
+  text-underline-offset: 2px;
+}
+
+.allauth form[action="/accounts/signup/"] ul {
+  display: none;
+}
+
+.allauth form[action="/accounts/signup/"] ul.errorlist {
+  display: block;
+}
+
+.allauth label[for="id_password2"] {
+  display: none;
+}
+
+.allauth input#id_password2 {
+  margin-bottom: 1rem;
 }
 
 .hover\:scale-95:hover {
